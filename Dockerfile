@@ -6,4 +6,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY main.py .
 
-CMD gunicorn -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 4 main:app
+CMD gunicorn -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 1 main:app
