@@ -4,7 +4,11 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'somelswtsecret!'
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins="https://aksw.github.io")
+
+@app.route('/')
+def index():
+    return "Hallo"
 
 @socketio.on('client_message')
 def receive_message (client_msg):
