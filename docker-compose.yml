@@ -1,0 +1,27 @@
+version: "3.7"
+
+x-chat: &chat
+  image: lswt2021.chat
+  restart: unless-stopped
+  expose:
+    - 8080
+  networks:
+    - web
+
+services:
+  dataweek_chat_a:
+    <<: *chat
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.dataweek-chat-a.rule=Host(`dataweek-chat-a.nate.eccenca.dev`)"
+  dataweek_chat_b:
+    <<: *chat
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.dataweek-chat-b.rule=Host(`dataweek-chat-b.nate.eccenca.dev`)"
+
+networks:
+  web:
+    external: true
