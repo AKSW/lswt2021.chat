@@ -1,10 +1,11 @@
 from flask import Flask
 from flask_socketio import SocketIO, emit
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'somelswtsecret!'
-socketio = SocketIO(app, cors_allowed_origins="https://aksw.github.io")
+socketio = SocketIO(app, cors_allowed_origins=os.environ['CHAT_CORS_ALLOWED_ORIGINS'])
 
 @app.route('/')
 def index():
